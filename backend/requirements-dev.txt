@@ -1,0 +1,9 @@
+# Outils de qualité et de tests (développement uniquement)
+# Installation : python -m pip install -r requirements-dev.txt
+-r requirements.txt
+httpx==0.28.1
+pytest==9.1.1
+pytest-cov==7.1.0
+ruff==0.16.8
+radon==6.0.1
+pip-audit==2.10.1

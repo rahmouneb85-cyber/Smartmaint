@@ -1,0 +1,209 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== THÈMES SMARTMAINT ===== */
+:root,
+:root[data-theme='dark'] {
+  --bg: #0f1117;
+  --card: #1a1d2e;
+  --text: #ffffff;
+  --muted: #888888;
+  --border: #2a2d3e;
+  --input: #0f1117;
+  --sb-bg: #11131f;
+  --sb-text: #c9ccd8;
+  --sb-hover: #1f2233;
+  /* couleurs sémantiques : contraste d'au moins 4,5:1 (WCAG AA) sur les fonds du thème */
+  --accent: #ff6b00;          /* orange SmartMaint pour textes, titres et bordures */
+  --accent-fond: #c2410c;     /* fond des boutons orange (texte blanc) */
+  --succes: #22c55e;
+  --succes-fond: #15803d;
+  --attention: #eab308;
+  --orange: #fb923c;
+  --danger: #f87171;
+  --danger-fond: #b91c1c;
+  --info: #60a5fa;
+  --neutre: #9ca3af;
+  --info-fond: #1d4ed8;
+  --neutre-fond: #4b5563;
+  --attention-fond: #a16207;
+}
+
+:root[data-theme='light'] {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --input: #f9fafb;
+  --sb-bg: #ffffff;
+  --sb-text: #374151;
+  --sb-hover: #f3f4f6;
+  --muted: #5b6472;
+  --accent: #b33c0b;
+  --accent-fond: #c2410c;
+  --succes: #166534;
+  --succes-fond: #15803d;
+  --attention: #854d0e;
+  --orange: #9a3412;
+  --danger: #b91c1c;
+  --danger-fond: #b91c1c;
+  --info: #1d4ed8;
+  --neutre: #4b5563;
+  --info-fond: #1d4ed8;
+  --neutre-fond: #4b5563;
+  --attention-fond: #a16207;
+}
+
+/* ===== ACCESSIBILITÉ ===== */
+/* lien « Aller au contenu » : visible seulement quand il reçoit le focus clavier */
+.lien-evitement {
+  position: absolute; top: 8px; inset-inline-start: 8px; z-index: 2000;
+  width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  background: var(--accent-fond); color: #fff; border-radius: 8px; font-weight: bold;
+}
+.lien-evitement:focus { width: auto; height: auto; clip: auto; padding: 10px 16px; }
+
+/* texte lu par les lecteurs d'écran, invisible à l'écran */
+.visuellement-cache { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* focus clavier toujours visible */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* respect du réglage « réduire les animations » du système */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ===== TABLETTE ET TÉLÉPHONE ===== */
+@media (max-width: 1100px) {
+  /* les tableaux larges défilent horizontalement au lieu de déborder de l'écran */
+  main table { display: block; overflow-x: auto; max-width: 100%; }
+}
+@media (max-width: 767px) {
+  main input, main select, main textarea { max-width: 100%; box-sizing: border-box; }
+  main button { min-height: 40px; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  transition: background 0.2s ease;
+}
+
+/* ===== BOUTONS FLOTTANTS ===== */
+/* le contenu n'est jamais masqué par les boutons : espace réservé en bas de page */
+main { padding-bottom: 96px !important; }
+
+.fab-principal { transition: transform 0.25s ease, box-shadow 0.2s ease; }
+.fab-principal:hover, .fab-contextuel:hover { box-shadow: 0 8px 26px #000a !important; filter: brightness(1.08); }
+.fab-principal:active, .fab-contextuel:active { transform: scale(0.94); }
+
+.fab-action {
+  display: flex; align-items: center; gap: 10px; background: none; border: none; padding: 0; cursor: pointer;
+  text-decoration: none; font-family: inherit; animation: fab-apparition 0.22s ease both;
+}
+.fab-action:hover > span:last-child { transform: scale(1.08); }
+.fab-action > span:last-child { transition: transform 0.15s ease; }
+.fab-etiquette {
+  background: var(--card, #1a1d2e); color: var(--text, #fff); border: 1px solid var(--border, #2a2d3e);
+  padding: 6px 12px; border-radius: 10px; font-size: 13px; font-weight: bold; white-space: nowrap; box-shadow: 0 4px 12px #0005;
+}
+@keyframes fab-apparition { from { opacity: 0; transform: translateY(10px) scale(0.9); } to { opacity: 1; transform: none; } }
+
+/* mise en évidence d'un nouvel événement : anneau qui s'élargit, 3 fois */
+.fab-pulsation { animation: fab-anneau 1.5s ease-out 3; }
+@keyframes fab-anneau {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7), 0 6px 18px #0006; }
+  100% { box-shadow: 0 0 0 18px rgba(220, 38, 38, 0), 0 6px 18px #0006; }
+}
+
+.fab-ligne {
+  display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; min-height: 44px; border: none; border-radius: 10px;
+  background: transparent; color: var(--text, #fff); cursor: pointer; font-family: inherit; font-size: 14px; text-align: start;
+}
+.fab-ligne:hover { background: var(--sb-hover, #1f2233); }
+.fab-champ {
+  flex: 1; min-width: 0; padding: 10px; border-radius: 10px; border: 1px solid var(--border, #2a2d3e);
+  background: var(--input, #0f1117); color: var(--text, #fff); font-family: inherit; font-size: 14px; box-sizing: border-box;
+}
+.fab-envoyer {
+  background: var(--accent-fond); color: #fff; border: none; border-radius: 10px; padding: 10px 16px; min-height: 44px;
+  cursor: pointer; font-weight: bold; font-family: inherit;
+}
+.fab-envoyer:disabled { opacity: 0.6; cursor: default; }
+.fab-filtre {
+  background: var(--bg, #0f1117); color: var(--text, #fff); border: 1px solid var(--border, #2a2d3e); border-radius: 10px;
+  padding: 8px 12px; min-height: 40px; cursor: pointer; font-family: inherit; font-size: 13px;
+}
+.fab-filtre[aria-pressed="true"] { background: var(--info-fond); border-color: var(--info-fond); color: #fff; font-weight: bold; }
+.fab-filtre:disabled { opacity: 0.6; cursor: default; }
+.fab-filtre:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fab-resultat[aria-selected="true"], .fab-resultat:focus-visible { background: var(--sb-hover, #1f2233); outline: 2px solid var(--accent); outline-offset: -2px; }
+.fab-detail { color: var(--muted, #888); }
+.fab-resultat[aria-selected="true"] .fab-detail { color: var(--text, #fff); }
+.fab-recherche-groupe { margin: 10px 12px 4px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted, #888); }
+.fab-puce { display: inline-block; border-radius: 10px; padding: 2px 8px; font-size: 11px; background: var(--neutre-fond); color: #fff; margin-inline-end: 4px; }
+
+
+/* Paramètres : réglages et aperçu côte à côte sur grand écran */
+.parametres-grille { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 14px; align-items: start; }
+@media (max-width: 1100px) { .parametres-grille { grid-template-columns: minmax(0, 1fr); } .parametres-grille > aside { position: static !important; } }
+
+/* Animations des boutons flottants choisies par l'administrateur, ou réduites par l'utilisateur */
+.fab-anim-aucune, .fab-anim-aucune * { animation: none !important; transition: none !important; }
+.fab-anim-marquee:hover > span:last-child, .fab-contextuel.fab-anim-marquee:hover { transform: scale(1.18) rotate(-8deg); animation: fab-rebond 0.6s ease; }
+.fab-menu .fab-anim-marquee { animation: fab-apparition-forte 0.4s cubic-bezier(.34, 1.56, .64, 1) both; }
+@keyframes fab-rebond { 0% { transform: scale(1); } 40% { transform: scale(1.28) rotate(-12deg); } 70% { transform: scale(1.1) rotate(4deg); } 100% { transform: scale(1.18) rotate(-8deg); } }
+@keyframes fab-apparition-forte { from { opacity: 0; transform: translateY(18px) scale(0.6); } to { opacity: 1; transform: none; } }
+.fab-contextuel.fab-anim-marquee.fab-pulsation { animation-duration: 0.8s !important; }
+.fab-sans-animation *, .fab-sans-animation { animation: none !important; transition: none !important; }
+
+/* Room Live : vidéos et panneau côte à côte, l'un sous l'autre sur tablette et téléphone */
+.room-grille { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 12px; align-items: start; }
+@media (max-width: 1100px) { .room-grille { grid-template-columns: minmax(0, 1fr); } }
+.room-commandes button:hover { filter: brightness(1.25); }
+.room-commandes button:focus-visible { outline: 3px solid #8ab4f8; outline-offset: 2px; }
+
+/* Room Live : le contenu du panneau (chat, participants, fichiers) laisse la place des boutons flottants,
+   pour qu'ils ne cachent jamais le bouton d'envoi ni les boutons de téléchargement */
+.room-panneau > :not([role="tablist"]) { padding-right: 84px !important; }
+[dir="rtl"] .room-panneau > :not([role="tablist"]) { padding-right: 12px !important; padding-left: 84px !important; }

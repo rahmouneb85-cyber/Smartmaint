@@ -1,0 +1,40 @@
+# Secrets
+.env
+backend/.env
+*.env.bak
+.env.avant*
+
+# Données générées
+backend/sauvegardes/
+backend/logs/
+backend/documents_idp/
+backend/captures_support/
+backend/fichiers_rooms/
+backend/evaluations/
+livraison/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+
+# Sécurité supplémentaire : aucun secret, aucune sauvegarde, aucune archive
+**/.env
+**/.env.*
+!**/.env.example
+**/app_avant*/
+*.sql
+*.zip
+*.bak
+*.enc
+*.log
+**/*_avant*/
+**/sauvegardes/

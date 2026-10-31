@@ -1,0 +1,27 @@
+from fastapi import APIRouter, Depends
+from app.api import auth, admin, equipment, sensor, alert, intervention, assistant, ia, rapport, copilote, documents, saisie, sante, workflows, notifications, public, messagerie, support, recherche, boutons, rooms, rooms_partage
+from app.core.security import get_current_user
+
+router = APIRouter()
+router.include_router(auth.router)
+router.include_router(admin.router)
+router.include_router(equipment.router, dependencies=[Depends(get_current_user)])
+router.include_router(sensor.router)
+router.include_router(alert.router)
+router.include_router(intervention.router)
+router.include_router(assistant.router)
+router.include_router(ia.router)
+router.include_router(rapport.router)
+router.include_router(copilote.router)
+router.include_router(documents.router)
+router.include_router(saisie.router)
+router.include_router(workflows.router)
+router.include_router(sante.router)
+router.include_router(notifications.router)
+router.include_router(public.router)
+router.include_router(messagerie.router)
+router.include_router(support.router)
+router.include_router(recherche.router)
+router.include_router(boutons.router)
+router.include_router(rooms.router)
+router.include_router(rooms_partage.router)

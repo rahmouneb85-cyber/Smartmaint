@@ -1,0 +1,31 @@
+# Bibliothèques nécessaires au backend SmartMaint (versions vérifiées par les tests automatisés)
+# Installation : python -m pip install -r requirements.txt
+# Facultatif : rapidocr-onnxruntime (lecture des scans sans connexion)
+bcrypt==5.0.0
+cryptography==50.0.1
+email-validator==2.3.0
+fastapi==0.143.0
+joblib==1.5.3
+numpy==2.4.3
+openpyxl==3.1.5
+paho-mqtt==2.1.0
+pandas==3.0.1
+pillow==13.0.0
+pydantic==2.13.5
+pydantic-settings==2.15.0
+PyJWT==2.15.1
+PyMySQL==1.2.3
+pyotp==2.10.0
+pypdf==6.21.2
+pypdfium2==5.13.0
+python-docx==1.2.0
+python-dotenv==1.2.2
+python-multipart==0.0.32
+python-pptx==1.0.2
+qrcode==8.2
+requests==2.33.1
+scikit-learn==1.8.0
+SQLAlchemy==2.0.50
+starlette==1.6.0
+uvicorn==0.27.0
+wsproto==1.2.0
